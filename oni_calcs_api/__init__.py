@@ -40,4 +40,8 @@ def create_app(test_config=None):
 
         app.register_blueprint(profile.bp)
 
+        from . import world
+
+        app.register_blueprint(world.bp)
+
         return app
