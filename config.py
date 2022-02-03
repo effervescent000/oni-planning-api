@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 
 class Config:
@@ -12,3 +13,4 @@ class Config:
     # JWT config
     JWT_TOKEN_LOCATION = ["cookies"]
     JWT_ACCESS_COOKIE_NAME = "access_token_cookie"
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=6)

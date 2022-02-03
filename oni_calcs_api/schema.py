@@ -7,6 +7,7 @@ class ProfileSchema(ma.Schema):
 
 
 multi_profiles_schema = ProfileSchema(many=True)
+one_profile_schema = ProfileSchema()
 
 
 class UserSchema(ma.Schema):

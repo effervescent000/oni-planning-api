@@ -36,4 +36,8 @@ def create_app(test_config=None):
 
         app.register_blueprint(auth.bp)
 
+        from . import profile
+
+        app.register_blueprint(profile.bp)
+
         return app
