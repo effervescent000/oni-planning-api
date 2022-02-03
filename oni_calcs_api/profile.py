@@ -27,8 +27,7 @@ def get_profiles_for_current_user():
 @jwt_required()
 def add_profile():
     new_profile = Profile(user_id=current_user.id)
-    if current_user.get_active_profile() == None:
-        new_profile.is_active = True
+    new_profile.is_active = True if current_user.get_active_profile() == None else False
     db.session.add(new_profile)
     db.session.commit()
     return jsonify(one_profile_schema.dump(new_profile))
@@ -53,3 +52,17 @@ def set_active_profile():
     db.session.commit()
     # return the active profile
     return jsonify(one_profile_schema.dump(target_profile))
+
+
+# DELETE endpoint
+
+
+@bp.route("/delete/<id>", methods=["DELETE"])
+@jwt_required()
+def delete_profile(id):
+    target_profile = Profile.query.get(id)
+    if target_profile.user_id != current_user.id:
+        return jsonify("Error: Not authorized"), 401
+    db.session.delete(target_profile)
+    db.session.commit()
+    return jsonify(multi_profile_schema.dump(Profile.query.filter_by(user_id=current_user.id).all()))
