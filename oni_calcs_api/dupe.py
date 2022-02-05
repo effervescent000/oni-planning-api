@@ -10,6 +10,12 @@ one_dupe_schema = DupeSchema()
 multi_dupe_schema = DupeSchema(many=True)
 
 # GET endpoints
+@bp.route("/get", methods=["GET"])
+@jwt_required()
+def get_dupes_by_user():
+    profile = current_user.get_active_profile()
+    dupes = Dupe.query.filter_by(profile_id=profile.id).all()
+    return jsonify(multi_dupe_schema.dump(dupes))
 
 
 # POST endpoints
