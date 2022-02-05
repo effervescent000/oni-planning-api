@@ -160,4 +160,16 @@ def update_dupe():
 # DELETE endpoints
 
 
+@bp.route("/delete/<id>", methods=["DELETE"])
+@jwt_required()
+def delete_dupe_by_id(id):
+    dupe = Dupe.query.get(id)
+    if dupe == None:
+        return jsonify("Error: Invalid dupe")
+    db.session.delete(dupe)
+    db.session.commit()
+
+    return jsonify(multi_dupe_schema.dump(Dupe.query.all()))
+
+
 # utils
