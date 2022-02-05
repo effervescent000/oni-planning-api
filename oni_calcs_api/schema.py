@@ -19,7 +19,34 @@ class UserSchema(ma.Schema):
 
 class DupeSchema(ma.Schema):
     class Meta:
-        fields = ("id", "profile_id", "world_id", "agriculture_skill", "athletics_skill")
+        fields = (
+            "id",
+            "name",
+            "profile_id",
+            "world_id",
+            "agriculture_skill",
+            "athletics_skill",
+            "construction_skill",
+            "creativity_skill",
+            "cuisine_skill",
+            "excavation_skill",
+            "husbandry_skill",
+            "machinery_skill",
+            "medicine_skill",
+            "piloting_skill",
+            "rocketry_skill",
+            "science_skill",
+            "strength_skill",
+            "advanced_research",
+            "field_research",
+            "applied_sciences",
+            "astronomy",
+            "data_analysis",
+            "crop_tending",
+            "critter_ranching",
+            "grilling",
+            "available_skill_points",
+        )
 
 
 class WorldSchema(ma.Schema):

@@ -44,4 +44,8 @@ def create_app(test_config=None):
 
         app.register_blueprint(world.bp)
 
+        from . import dupe
+
+        app.register_blueprint(dupe.bp)
+
         return app

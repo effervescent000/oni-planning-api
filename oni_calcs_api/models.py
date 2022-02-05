@@ -38,6 +38,7 @@ class Profile(db.Model):
 class Dupe(db.Model):
     __tablename__ = "dupes"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(50), nullable=False)
     profile_id = db.Column(db.Integer, db.ForeignKey("profiles.id"), nullable=False)
     world_id = db.Column(db.Integer, db.ForeignKey("worlds.id"))
 
