@@ -157,6 +157,22 @@ def update_dupe():
     return jsonify(one_dupe_schema.dump(dupe))
 
 
+@bp.route("/world", methods=["PUT"])
+@jwt_required()
+def change_dupe_world():
+    data = request.get_json()
+    dupe_id = data.get("dupeId")
+    dupe = Dupe.query.get(dupe_id)
+    if dupe == None:
+        return jsonify("Error: Invalid dupe")
+    world_id = int(data.get("destinationId"))
+    if world_id == 0:
+        world_id = None
+    dupe.world_id = world_id
+    db.session.commit()
+    return jsonify(one_dupe_schema.dump(dupe))
+
+
 # DELETE endpoints
 
 
