@@ -22,6 +22,7 @@ class DupeSchema(ma.Schema):
         fields = (
             "id",
             "name",
+            "type",
             "profile_id",
             "world_id",
             "agriculture_skill",

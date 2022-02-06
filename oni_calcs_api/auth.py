@@ -65,17 +65,18 @@ def login():
     return response
 
 
-@bp.route("/logout", methods=["POST"])
+# PUT endpoints
+
+# DELETE endpoints
+
+
+@bp.route("/logout", methods=["DELETE"])
 @jwt_required()
 def logout():
     response = jsonify({"msg": "logout successful"})
     unset_jwt_cookies(response)
     return response, 200
 
-
-# PUT endpoints
-
-# DELETE endpoints
 
 # utils
 
